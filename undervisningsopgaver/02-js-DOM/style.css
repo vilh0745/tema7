@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+header {
+  border: 1px solid black;
+  padding: 30px;
+}
+
+h1 {
+  display: flex;
+  place-content: center;
+}
+
+article {
+  border: 1px solid black;
+  margin: 20px;
+}
+
+footer {
+  border: 1px solid black;
+  display: flex;
+  place-content: center;
+  padding: 30px;
+}
+
+section {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+}
+
+main {
+  max-width: 1000px;
+  margin: auto;
+}
