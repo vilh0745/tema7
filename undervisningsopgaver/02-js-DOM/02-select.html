@@ -47,8 +47,8 @@
   <script>
     const overskrift = document.querySelector("h1");
     const undertitel = document.querySelector("h2");
-    const venstreArtikel = document.querySelector("#left");
-    const højreArtikel = document.querySelector("#right");
+    const venstreArtikel = document.querySelector("article:nth-child(1)");
+    const højreArtikel = document.querySelector("article:nth-child(2)");
     const venstreArtikelOverskrift = venstreArtikel.querySelector("h3");
     const højreArtikelOverskrift = højreArtikel.querySelector("h3");
     const menu = document.querySelector("header");
@@ -59,7 +59,7 @@
     const brødtekst2 = højreArtikel.querySelector("p");
     const brødtekst1 = venstreArtikel.querySelector("p");
     const bunden = document.querySelector("footer");
-    const footerTekst = bunden.querySelector("footer");
+    const footerTekst = bunden.querySelector("p");
 
     overskrift.textContent = "OK";
     venstreArtikelOverskrift.innerHTML = "<span>Tjeek Tjeek</span>";
