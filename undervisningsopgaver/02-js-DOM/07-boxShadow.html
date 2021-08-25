@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Titel</h1>
+    </header>
+    <main>
+      <h2>Undertitel</h2>
+      <section>
+        <article class="shadow" id="left">
+          <img src="img/placeimg_640_480_arch-2.jpg" alt="" />
+          <h3>Article 1</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod
+            blanditiis rerum incidunt, tenetur maxime perspiciatis repellat odit
+            praesentium nemo explicabo quasi tempore ullam consequuntur officia,
+            non porro modi at esse possimus soluta aliquid tempora animi. Nisi
+            quas vitae repudiandae! Eligendi voluptatem assumenda ullam quidem
+            unde fugiat harum dolor temporibus facilis.
+          </p>
+        </article>
+        <article class="shadow" id="right">
+          <img src="img/placeimg_640_480_arch.jpg" alt="" />
+          <h3>Article 2</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod
+            blanditiis rerum incidunt, tenetur maxime perspiciatis repellat odit
+            praesentium nemo explicabo quasi tempore ullam consequuntur officia,
+            non porro modi at esse possimus soluta aliquid tempora animi. Nisi
+            quas vitae repudiandae! Eligendi voluptatem assumenda ullam quidem
+            unde fugiat harum dolor temporibus facilis.
+          </p>
+        </article>
+      </section>
+    </main>
+    <footer>
+      <p>This is the footer</p>
+    </footer>
+  </body>
+  <script>
+    const overskrift = document.querySelector("h1");
+    const undertitel = document.querySelector("h2");
+    const venstreArtikel = document.querySelector("article:nth-child(1)");
+    const højreArtikel = document.querySelector("article:nth-child(2)");
+    const venstreArtikelOverskrift = venstreArtikel.querySelector("h3");
+    const højreArtikelOverskrift = højreArtikel.querySelector("h3");
+    const menu = document.querySelector("header");
+    const rubrik = document.querySelector("main");
+    const billede1 = venstreArtikel.querySelector("img");
+    const billede2 = højreArtikel.querySelector("img");
+    const overview = document.querySelector("section");
+    const brødtekst2 = højreArtikel.querySelector("p");
+    const brødtekst1 = venstreArtikel.querySelector("p");
+    const bunden = document.querySelector("footer");
+    const footerTekst = bunden.querySelector("p");
+
+    document.addEventListener("DOMContentLoaded", start);
+    function start() {
+      // console.log("start");
+      overskrift.textContent = "OK";
+      venstreArtikelOverskrift.innerHTML = "<span>Tjeek Tjeek</span>";
+      brødtekst1.innerHTML = "en masse <b>tekst</b> der kan alt muligt";
+      højreArtikelOverskrift.textContent = "WHUUUUHUUUU";
+      brødtekst2.textContent = "jeppffd";
+
+      billede1.src = "img/placeimg_640_480_arch.jpg";
+      billede2.src = "img/placeimg_640_480_arch-2.jpg";
+      billede1.alt = "hej";
+      billede2.alt = "med dig";
+
+      let newArticle = document.createElement("article");
+      //nyt article element
+      let mainSection = document.querySelector("section");
+      //nyt h3 element
+      let txt = document.createElement("h3");
+      //tekst til overskrift
+      let overskriftTxt = document.createTextNode("Article 3");
+      //indsæt tekst i overskrift
+      txt.appendChild(overskriftTxt);
+      //tilføj overskrift til article
+      newArticle.appendChild(txt);
+
+      //tilføj article til section
+      mainSection.appendChild(newArticle);
+
+      billede1.addEventListener("click", skiftBillede);
+
+      document
+        .querySelector("article:nth-child(3)")
+        .addEventListener("mouseover", skyggeForsvind);
+      document
+        .querySelector("article:nth-child(1)")
+        .addEventListener("mouseover", skyggeForsvind);
+      document
+        .querySelector("article:nth-child(2)")
+        .addEventListener("mouseover", skyggeForsvind);
+      document
+        .querySelector("article:nth-child(3)")
+        .addEventListener("mouseout", skyggeTilbage);
+      document
+        .querySelector("article:nth-child(1)")
+        .addEventListener("mouseout", skyggeTilbage);
+      document
+        .querySelector("article:nth-child(2)")
+        .addEventListener("mouseout", skyggeTilbage);
+    }
+
+    function skiftBillede() {
+      let tal = Math.round(Math.random() * 10);
+      billede1.src = "https://placeimg.com/400/300/arch?t=" + tal;
+    }
+
+    function skyggeForsvind() {
+      this.classList.toggle("shadow");
+    }
+
+    function skyggeTilbage() {
+      this.classList.toggle("shadow");
+    }
+  </script>
+</html>

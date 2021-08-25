@@ -21,6 +21,7 @@ h1 {
 article {
   border: 1px solid black;
   margin: 20px;
+  transition: 0.8s;
 }
 
 footer {
@@ -42,4 +43,10 @@ main {
 
 span {
   color: blue;
+}
+
+.shadow {
+  box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.64);
+  -webkit-box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.64);
+  -moz-box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.64);
 }
