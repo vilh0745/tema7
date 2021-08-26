@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #dyr {
+        border: 1px solid black;
+        padding: 10px;
+        margin: 10px;
+        text-align: center;
+      }
+
+      h3 {
+        font-size: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <section id="liste"></section>
+    <template>
+      <article id="dyr">
+        <h3></h3>
+        <img src="" alt="" />
+        <p class="type">Type:&nbsp</p>
+        <p class="levested">Levested:&nbsp</p>
+      </article>
+    </template>
+  </body>
+  <script>
+    "use strict";
+
+    const fil = "alleDyr.json";
+    async function hentdata(fil) {
+      const resultat = await fetch(fil);
+      const json = await resultat.json();
+      vis(json);
+    }
+
+    function vis(json) {
+      console.log(json);
+
+      const container = document.querySelector("#liste");
+      const dyreTemplate = document.querySelector("template");
+
+      json.forEach((dyr) => {
+        let klon = dyreTemplate.cloneNode(true).content;
+        klon.querySelector("h3").textContent = dyr.navn;
+        klon.querySelector("img").src = dyr.billede;
+        klon.querySelector(".type").innerHTML += dyr.type;
+        klon.querySelector(".levested").innerHTML += dyr.levested;
+        container.appendChild(klon);
+      });
+    }
+    hentdata(fil);
+    // const destination = document.querySelector("#dyr");
+    // const alInfo = `navn: ${dyr.navn} type: ${dyr.type} levested: ${dyr.levested}`;
+    // // destination.querySelector("p").textContent = alInfo;
+    // destination.querySelector("img").src = dyr.billede;
+  </script>
+</html>
