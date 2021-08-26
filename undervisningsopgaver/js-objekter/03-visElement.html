@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <article id="dyr">
+      <h3></h3>
+      <img src="" alt="" />
+      <p>Type:&nbsp</p>
+      <p>Levested:&nbsp</p>
+    </article>
+  </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", start);
+
+    const p1 = document.querySelector("article:nth-child(1) p");
+    const p2 = document.querySelector("article:nth-child(2) p");
+    const destination = document.querySelector("#dyr");
+    const alInfo = `navn: ${dyr.navn} type: ${dyr.type} levested: ${dyr.levested}`;
+
+    function start() {
+      let dyr = {
+        navn: "gris",
+        type: "pattedyr",
+        billede: "billeder/pig.png",
+        levested: "svinefarme",
+      };
+
+      console.log(
+        `navn: ${dyr.navn} type: ${dyr.type} levested: ${dyr.levested}`
+      );
+
+      destination.querySelector("h3").textContent = dyr.navn;
+      destination.querySelector("img").src = dyr.billede;
+      // p1.innerHTML += dyr.type;
+      // p2.innerHTML += dyr.levested;
+      destination.querySelector("article:nth-child(1) p").innerHTML += dyr.type;
+      destination.querySelector("article:nth-child(2) p").innerHTML +=
+        dyr.levested;
+    }
+  </script>
+</html>
