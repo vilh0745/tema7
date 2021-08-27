@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <section id="liste"></section>
+    <template>
+      <article id="bil">
+        <h3></h3>
+        <p class="model">Model:&nbsp</p>
+        <p class="motor">Motor:&nbsp</p>
+        <p class="km">KM:&nbsp</p>
+        <ul class="udstyr">
+          Udstyr:
+        </ul>
+      </article>
+    </template>
+  </body>
+  <script>
+    "use strict";
+
+    const fil = "volvo.json";
+    async function hentdata(fil) {
+      const resultat = await fetch(fil);
+      const json = await resultat.json();
+      vis(json);
+    }
+
+    function vis(json) {
+      console.log(json);
+
+      const container = document.querySelector("#liste");
+      const bilTemplate = document.querySelector("template");
+
+      json.forEach((bil) => {
+        let klon = bilTemplate.cloneNode(true).content;
+        klon.querySelector("h3").textContent = bil.mærke;
+        klon.querySelector(".model").innerHTML += bil.model;
+        klon.querySelector(".motor").innerHTML += bil.motor;
+        klon.querySelector(".km").innerHTML += bil.km;
+        klon.querySelector(".udstyr").innerHTML += bil.udstyr;
+        container.appendChild(klon);
+      });
+    }
+    hentdata(fil);
+  </script>
+</html>
