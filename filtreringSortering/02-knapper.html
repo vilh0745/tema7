@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #galleri {
+        border: 2px solid orange;
+        padding: 10px;
+        margin: 10px;
+        border-radius: 8px;
+      }
+
+      section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        width: 90vw;
+        max-width: 1580px;
+        margin: 0 auto;
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      h3 {
+        font-size: 2rem;
+      }
+
+      nav {
+        display: flex;
+        justify-content: center;
+      }
+
+      .valgt {
+        background-color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Persongalleri</h1>
+    <nav>
+      <button data-troende="alle">Alle</button>
+      <button data-troende="ja" class="valgt">Troende</button>
+      <button data-troende="nej">Ikke troende</button>
+      <button data-troende="tvivler">Tvivler</button>
+    </nav>
+    <section id="liste"></section>
+
+    <template>
+      <article id="galleri">
+        <img src="" alt="" />
+        <h2></h2>
+        <p class="mail"></p>
+        <p class="hobby"></p>
+      </article>
+    </template>
+  </body>
+  <script>
+    "use strict";
+
+    const url = "https://persongalleri-5d3e.restdb.io/rest/persongalleri";
+
+    const options = {
+      headers: {
+        "x-apikey": "600fe9211346a1524ff12e31",
+      },
+    };
+
+    document.addEventListener("DOMContentLoaded", start);
+    let personer;
+    let filter = "ja";
+
+    function start() {
+      hentdata();
+    }
+
+    async function hentdata() {
+      const resultat = await fetch(url, options);
+      const json = await resultat.json();
+      vis(json);
+    }
+
+    function vis(json) {
+      console.log(json);
+
+      const container = document.querySelector("#liste");
+      const galleriTemplate = document.querySelector("template");
+
+      json.forEach((person) => {
+        if (filter == person.troende) {
+          let klon = galleriTemplate.cloneNode(true).content;
+          klon.querySelector("img").src = "faces/" + person.billede;
+          klon.querySelector("h2").textContent =
+            person.fornavn + " " + person.efternavn;
+          klon.querySelector(".mail").textContent = "Mail: " + person.email;
+          klon.querySelector(".hobby").textContent = "Hobby: " + person.hobby;
+          container.appendChild(klon);
+        }
+      });
+    }
+  </script>
+</html>
