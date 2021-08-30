@@ -76,7 +76,7 @@
       const container = document.querySelector("#liste");
       const galleriTemplate = document.querySelector("template");
 
-      personer.forEach((person) => {
+      json.forEach((person) => {
         if (filter == person.troende) {
           let klon = galleriTemplate.cloneNode(true).content;
           klon.querySelector("img").src = "faces/" + person.billede;
@@ -88,6 +88,5 @@
         }
       });
     }
-    hentdata();
   </script>
 </html>
