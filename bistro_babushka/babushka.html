@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #galleri {
+        border: 2px solid orange;
+        padding: 10px;
+        margin: 10px;
+        border-radius: 8px;
+      }
+
+      section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        width: 90vw;
+        max-width: 1580px;
+        margin: 0 auto;
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      p {
+        margin-bottom: 5px;
+        line-height: 1.4;
+      }
+
+      header {
+        background-color: orange;
+        height: 15vh;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+
+      h1 {
+        font-size: 3rem;
+      }
+
+      h2 {
+        text-align: center;
+        margin: 20px 20px;
+        font-size: 2rem;
+      }
+
+      * {
+        margin: 0;
+      }
+
+      aside {
+        display: flex;
+        justify-content: space-evenly;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>BISTRO BABUSHKA</h1>
+    </header>
+
+    <h2>Menu</h2>
+    <aside>
+      <nav>
+        <button>Alle</button>
+        <button>Foretter</button>
+        <button>Hovedretter</button>
+        <button>Desserter</button>
+        <button>Drikkevarer</button>
+      </nav>
+    </aside>
+
+    <section id="liste"></section>
+    <template>
+      <article id="galleri">
+        <img src="" alt="" />
+        <h3></h3>
+        <p class="beskrivelse"></p>
+        <p class="pris"></p>
+      </article>
+    </template>
+  </body>
+  <script>
+    "use strict";
+
+    const url = "https://babushka-dd8a.restdb.io/rest/menu";
+
+    const options = {
+      headers: {
+        "x-apikey": "600ec2fb1346a1524ff12de4",
+      },
+    };
+
+    document.addEventListener("DOMContentLoaded", start);
+
+    let menu;
+
+    function start() {
+      hentdata();
+    }
+
+    async function hentdata() {
+      const resultat = await fetch(url, options);
+      const json = await resultat.json();
+      vis(json);
+    }
+
+    function vis(json) {
+      console.log(json);
+
+      const container = document.querySelector("#liste");
+      const galleriTemplate = document.querySelector("template");
+
+      json.forEach((menu) => {
+        let klon = galleriTemplate.cloneNode(true).content;
+        klon.querySelector("img").src = "medium/" + menu.billednavn + "-md.jpg";
+        klon.querySelector("h3").textContent = menu.navn;
+        klon.querySelector(".beskrivelse").textContent = menu.kortbeskrivelse;
+        klon.querySelector(".pris").textContent = "Pris: " + menu.pris + ",-";
+        container.appendChild(klon);
+      });
+    }
+    hentdata();
+  </script>
+</html>
