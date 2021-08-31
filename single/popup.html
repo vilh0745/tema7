@@ -51,6 +51,13 @@
         background-color: rgba(0, 0, 0, 0.384);
         overflow: scroll;
       }
+
+      #luk {
+        position: fixed;
+        padding: 1em;
+        font-size: 1.1rem;
+        color: white;
+      }
     </style>
   </head>
   <body>
@@ -63,7 +70,6 @@
       <button data-troende="tvivler">Tvivler</button>
     </nav>
     <section id="liste"></section>
-
     <template>
       <article id="galleri">
         <img src="" alt="" />
@@ -72,7 +78,16 @@
         <p class="hobby"></p>
       </article>
     </template>
-    <article id="pop_up"></article>
+
+    <article id="pop_up">
+      <button id="luk">Luk</button>
+      <article>
+        <h2></h2>
+        <img src="" alt="" />
+        <p class="mail"></p>
+        <p class="hobby"></p>
+      </article>
+    </article>
   </body>
   <script>
     "use strict";
