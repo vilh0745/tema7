@@ -64,6 +64,19 @@
 
       button {
         font-family: "Russo One", sans-serif;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 0.7rem;
+      }
+
+      button:hover {
+        background: linear-gradient(
+          0deg,
+          rgba(215, 16, 16, 1) 0%,
+          rgba(15, 43, 230, 1) 44%,
+          rgba(255, 255, 255, 1) 100%
+        );
+        color: white;
       }
 
       p {
@@ -90,12 +103,13 @@
         font-size: 3.5rem;
         font-family: "Russo One", sans-serif;
         color: white;
+        text-align: center;
       }
 
       h2 {
         text-align: center;
         margin: 20px 20px;
-        font-size: 2rem;
+        font-size: 2.4rem;
         font-family: "strengthen", sans-serif;
       }
 
@@ -145,7 +159,7 @@
         font-size: 1.2rem;
       }
 
-            #popup {
+      #popup {
         display: none;
         position: fixed;
         left: 0;
@@ -187,6 +201,11 @@
         #popup article {
             flex-direction: row;
             }
+
+            button {
+        
+        font-size: 1.1rem;
+      }
       }
     </style>
   </head>
@@ -199,7 +218,7 @@
     <aside>
       <nav>
         <button data-kategori="alle" class="valgt">Alle</button>
-        <button data-kategori="forretter">Foretter</button>
+        <button data-kategori="forretter">Forretter</button>
         <button data-kategori="hovedretter">Hovedretter</button>
         <button data-kategori="desserter">Desserter</button>
         <button data-kategori="drikkevarer">Drikkevarer</button>
@@ -278,6 +297,22 @@
       const container = document.querySelector("#liste");
       const galleriTemplate = document.querySelector("template");
       container.textContent = "";
+//       json.sort(function (a, b) {
+//   return a.pris - b.pris;
+// });
+json.sort(function(a, b) {
+  let nameA = a.kategori.toUpperCase();
+  let nameB = b.kategori.toUpperCase(); 
+  if (nameA > nameB) {
+    return -1;
+  }
+  if (nameA < nameB) {
+    return 1;
+  }
+
+  return 0;
+});
+
 
       json.forEach((menu) => {
         if (filter == menu.kategori || filter == "alle") {
