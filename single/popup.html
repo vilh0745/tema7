@@ -80,6 +80,11 @@
         margin: 0 30px;
       }
 
+      .lmere {
+        cursor: pointer;
+        color: lightblue;
+      }
+
       @media (min-width: 992px) {
         #popup article {
             flex-direction: row;
@@ -117,6 +122,7 @@
           <p class="hobby"></p>
           <p class="fdag"></p>
           <p class="tro"></p>
+          <p class="lmere"></p>
         </div>
       </article>
     </section>
@@ -193,7 +199,16 @@
       popup.querySelector(".fdag").textContent =
         "Fødselsdag: " + person.fødselsdag;
       popup.querySelector(".tro").textContent = "Tro: " + person.troende;
+      popup.querySelector(".lmere").textContent = "Læs mere";
       document.querySelector("#luk").addEventListener("click", () => popup.style.display = "none");
+      document
+            .querySelector(".lmere")
+            .addEventListener("click", () => visPerson(person));
+          container.appendChild(klon);
+    }
+
+    function visPerson(hvem) {
+location.href = `02-detalje.html?id=${hvem._id}`;
     }
   </script>
 </html>
